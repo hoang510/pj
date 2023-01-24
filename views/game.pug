@@ -1,0 +1,22 @@
+extends sublayout 
+ 
+
+block content
+    link(rel="stylesheet", href="stylesheets/gameplay.css")
+    .control-center
+    button#resetbutton(onclick='resetboard()') reset
+
+    button#randomMove(onclick='changeRandomMoveMode()') randomMove
+
+    button#moveLeftButton(onclick = 'move(0, 1)') move left 
+    button#moveRightButton(onclick = 'move(0, -1)') move right
+    button#moveUpButton(onclick = 'move(-1, 0)') move up
+    button#moveDownButton(onclick = 'move(1, 0)') move down 
+    button#safeMode(onclick = 'switchSafeMode()') Safe mode
+
+    .board
+        include includes/gameBoard
+    script.
+        var acols = !{acols}
+        var arows = !{arows}
+    script(src="javascripts/gameplay.js")   

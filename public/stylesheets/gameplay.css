@@ -1,0 +1,51 @@
+:root {
+    --acols: 10;
+    --arows: 10;
+}
+.board {
+    display: grid;
+    grid-template-columns: repeat(var(--acols), auto);
+    background-color: orange;
+}
+
+.cell {
+    grid-column: auto;
+    background-color: white;
+    transition-duration: 0.1s;
+    transform-origin: left;
+    transition-timing-function: ease;
+}
+
+.cell:after {
+    content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.cell:disabled, .active{
+    background-color: wheat;
+}
+
+.cell:hover {
+    opacity: 90%;
+}
+
+#safeMode.unsafe {
+    background-color: red;
+    color: white;
+}
+
+#safeMode.safe {
+    background-color: green;
+    color: white;
+}
+
+#randomMove {
+    background-color: rgb(119, 109, 109);
+    color: #ccc;
+}
+
+#randomMove.on {
+    background-color: rgb(119, 63, 119);
+    color: rgb(255, 116, 220);
+}
