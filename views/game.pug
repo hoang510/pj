@@ -4,19 +4,26 @@ extends sublayout
 block content
     link(rel="stylesheet", href="stylesheets/gameplay.css")
     .control-center
-    button#resetbutton(onclick='resetboard()') reset
+    button#resetbutton(onclick='board.resetboard()') reset
 
+    input#delayTime(type="number", name="")
     button#randomMove(onclick='changeRandomMoveMode()') randomMove
 
-    button#moveLeftButton(onclick = 'move(0, 1)') move left 
-    button#moveRightButton(onclick = 'move(0, -1)') move right
-    button#moveUpButton(onclick = 'move(-1, 0)') move up
-    button#moveDownButton(onclick = 'move(1, 0)') move down 
-    button#safeMode(onclick = 'switchSafeMode()') Safe mode
-
-    .board
-        include includes/gameBoard
+    button#moveLeftButton(onclick = 'board.move(0, 1)') move left 
+    button#moveRightButton(onclick = 'board.move(0, -1)') move right
+    button#moveUpButton(onclick = 'board.move(-1, 0)') move up
+    button#moveDownButton(onclick = 'board.move(1, 0)') move down 
+    button#safeMode(onclick = 'board.switchSafeMode(); displaySafeMode(board)') Safe mode
+    button(onclick = 'boardclone.reload()') clone
+    input#arows(type="number", name="")
+    input#acols(type="number", name="")
+    button#createBoard create
+    #Board.board
+        //- include includes/gameBoard
     script.
         var acols = !{acols}
         var arows = !{arows}
-    script(src="javascripts/gameplay.js")   
+    script(src="javascripts/Cell.js") 
+    script(src="javascripts/Board.js")   
+    script(src="javascripts/gameplay.js") 
+    script(src="javascripts/RandomMove.js")
