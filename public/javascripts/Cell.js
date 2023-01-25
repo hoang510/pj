@@ -1,3 +1,5 @@
+const ACTIVE_CLASS = 'active';
+
 class Cell {
 
     constructor(id, container) {

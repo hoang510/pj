@@ -1,7 +1,5 @@
-const ACTIVE_CLASS = 'active';
-
 class Board {
-    constructor(acols, arows, container) {
+    constructor(arows, acols, container) {
         container.innerHTML = "";
         this.acols = acols;
         this.arows = arows;
@@ -11,14 +9,14 @@ class Board {
     }
 
     CreateBoard() {
-        this.construct2darr(this.data);
+        this.data = [];
         for (let i = 0; i < this.arows; i++) {
+            this.data[i] = [];
             for (let j = 0; j < this.acols; j++) {
-                this.data[i][j] = new Cell(i * acols + j, this.container);
+                this.data[i][j] = new Cell(i * this.acols + j, this.container);
             }
         }
     }
-
 
     resetboard() {
         this.data.forEach((row) => {
@@ -28,9 +26,8 @@ class Board {
         });
     }
 
-
     trace() {
-        this.data.forEach(row => {
+        this.data.forEach((row) => {
             row.forEach((cell) => {
                 cell.trace();
             });
@@ -38,7 +35,7 @@ class Board {
     }
 
     reload() {
-        this.data.forEach(row => {
+        this.data.forEach((row) => {
             row.forEach((cell) => {
                 cell.reload();
             })
@@ -71,7 +68,7 @@ class Board {
         }
 
         for (let i = 0; i < this.arows; i++) {
-            for (let j = 0; j < acols; j++) {
+            for (let j = 0; j < this.acols; j++) {
                 if (this.inRange(i - dx, j - dy)) {
                     newBoard[i][j] = this.data[i - dx][j - dy].isActive();
                 }
@@ -97,12 +94,5 @@ class Board {
 
     safeModeOn() {
         return this.safeMode;
-    }
-
-    data = [];
-    construct2darr(data) {
-        for (let i = 0; i < this.arows; i++) {
-            data[i] = [];
-        }
     }
 }
